@@ -69,6 +69,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Alliance.cs" />
+    <Compile Include="Models\AllianceEvent.cs" />
+    <Compile Include="Models\DefenseConfiguration.cs" />
+    <Compile Include="Models\Enums\AllianceActionType.cs" />
+    <Compile Include="Models\Enums\AllianceColor.cs" />
+    <Compile Include="Models\Enums\DefenseStrength.cs" />
+    <Compile Include="Models\Enums\DefenseType.cs" />
+    <Compile Include="Models\Enums\MatchPeriod.cs" />
+    <Compile Include="Models\Enums\MatchType.cs" />
+    <Compile Include="Models\Enums\RobotActionType.cs" />
+    <Compile Include="Models\RobotEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
