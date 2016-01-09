@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScoutingTools.Models;
+using ScoutingTools.UI;
 
 namespace ScoutingTools
 {
@@ -23,6 +25,13 @@ namespace ScoutingTools
         public MainWindow()
         {
             InitializeComponent();
+
+            button.Click += (sender, args) =>
+            {
+                Alliance a = new Alliance() {Robots = new List<int>() {10, 20, 30, 40} };
+                var win = new RobotEventInput(a);
+                win.Show();
+            };
         }
     }
 }
