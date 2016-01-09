@@ -79,6 +79,7 @@
     <Compile Include="Models\Enums\MatchPeriod.cs" />
     <Compile Include="Models\Enums\MatchType.cs" />
     <Compile Include="Models\Enums\RobotActionType.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\RobotEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -42,12 +42,17 @@ namespace ScoutingTools.Models
         /// <summary>
         /// Robot events pertaining to alliance
         /// </summary>
-        public ICollection<RobotEvent> MemberEvents { get; set; }
+        public ICollection<RobotEvent> RobotEvents { get; set; }
 
         /// <summary>
         /// Alliance Events for the match
         /// </summary>
         public ICollection<AllianceEvent> AllianceEvents { get; set; }
+
+        /// <summary>
+        /// The configuration that the alliance used for the match
+        /// </summary>
+        public DefenseConfiguration Defense { get; set; }
 
         /// <summary>
         /// What color the alliance was

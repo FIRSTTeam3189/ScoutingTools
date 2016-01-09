@@ -13,6 +13,8 @@ namespace ScoutingTools.Models.Enums
         CrossDefenseThree,
         CrossDefenseFour,
         CrossDefenseFive,
+        MissedHighGoal,
+        MissedLowGoal,
         ShootIntoHigh,
         ShootIntoLow,
         Hang,
