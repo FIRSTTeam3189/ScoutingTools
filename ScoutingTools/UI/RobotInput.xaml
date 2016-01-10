@@ -1,0 +1,27 @@
+﻿<Window x:Class="ScoutingTools.UI.RobotInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="RobotInput" Height="150" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label x:Name="RobotInputName" Content="Robot Name:" HorizontalAlignment="Center" Margin="0,5,0,5" VerticalAlignment="Top"/>
+        <Label x:Name="RobotInputNumber" Content="Robot Number:" HorizontalAlignment="Center" Margin="0,5,0,5" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="RobotInputTextBox1" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,5,0,5" TextWrapping="Wrap" Text="Type Here" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="RobotInputTextBox2" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,5,0,5" Grid.Row="1" TextWrapping="Wrap" Text="Type Here" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="RobotInputCreateButton" Content="Create" HorizontalAlignment="Left" Margin="34,10.4,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="RobotInputCancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="40.4,10.4,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>
