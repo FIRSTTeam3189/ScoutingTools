@@ -5,24 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
-        Title="RobotEventInput" Height="600" Width="800">
+        Title="RobotEventInput" Height="170" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label x:Name="RobotNumberLabel" Content="Robot Number: " HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-        <ComboBox x:Name="RobotSelection" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" ItemsSource="{Binding Alliance.Robots}">
+        <ComboBox x:Name="RobotSelection" Grid.Column="1" Margin="0,5,0,5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" ItemsSource="{Binding Alliance.Robots}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <Label x:Name="RobotActionLabel" Content="Robot Action:" HorizontalAlignment="Center" Grid.Row="1" Margin="0,5,0,5" VerticalAlignment="Center"/>
+        <ComboBox x:Name="RobotActionComboBox" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="160"/>
+        <Label x:Name="RobotEventLabel" Content="Robot Event:" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
+        <ComboBox x:Name="RobotEventComboBox" Grid.Column="1" Margin="0,5,0,5" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="160"/>
+        <Button x:Name="RobotEventInputNo" Content="No" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Width="75" Grid.Column="1" Margin="0,5,0,5"/>
+        <Button x:Name="RobotEventInputYes" Content="Yes" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Width="75" Margin="0,5,0,5"/>
     </Grid>
 </Window>
