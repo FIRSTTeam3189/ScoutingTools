@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ScoutingTools.Models;
+using ScoutingTools.Models.Enums;
 
 namespace ScoutingTools.UI
 {
@@ -30,6 +31,8 @@ namespace ScoutingTools.UI
 
             DataContext = this;
             Alliance = alliance;
+            RobotActionComboBox.ItemsSource = RobotActionTypeUI.UIStrings;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

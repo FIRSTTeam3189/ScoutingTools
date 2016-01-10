@@ -21,12 +21,18 @@
         <ComboBox x:Name="RobotSelection" Grid.Column="1" Margin="0,5,0,5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" ItemsSource="{Binding Alliance.Robots}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding}"/>
+                    <Label Content="{Binding UIString}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label x:Name="RobotActionLabel" Content="Robot Action:" HorizontalAlignment="Center" Grid.Row="1" Margin="0,5,0,5" VerticalAlignment="Center"/>
-        <ComboBox x:Name="RobotActionComboBox" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="160"/>
+        <ComboBox x:Name="RobotActionComboBox" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="160">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Value}"></Label>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Label x:Name="RobotEventLabel" Content="Robot Event:" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
         <ComboBox x:Name="RobotEventComboBox" Grid.Column="1" Margin="0,5,0,5" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="160"/>
         <Button x:Name="RobotEventInputNo" Content="No" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Width="75" Grid.Column="1" Margin="0,5,0,5"/>
