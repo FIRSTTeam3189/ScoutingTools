@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Team.cs" />
     <Compile Include="UI\RobotEventInput.xaml.cs">
       <DependentUpon>RobotEventInput.xaml</DependentUpon>
     </Compile>
