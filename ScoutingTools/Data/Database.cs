@@ -122,6 +122,31 @@ namespace ScoutingTools.Data
             }
         }
 
+        /// <summary>
+        /// Grabs all the robot performances for a team
+        /// </summary>
+        /// <param name="team">The team to grab for</param>
+        /// <returns></returns>
+        public ICollection<RobotPerformance> GetRobotPerformanceForTeam(Team team)
+        {
+            // Grab the robot events where the teams are equal, then group by match number, and discard the empty ones
+            return RobotEvents.Where(x => x.Robot.Number == team.Number)
+                .GroupBy(x => x.MatchNumber)
+                .Select(x => new {Match = x.Key, Events = x.ToList()})
+                .Where(x => (x.Events?.Count ?? 0) > 0)
+                .Select(x => new RobotPerformance()
+                {
+                    Team = team,
+                    MatchNumber = x.Match,
+                    Events = x.Events
+                }).ToList();
+        }
+
+        /// <summary>
+        /// Saves the Database to disk for the given directory
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <returns></returns>
         public async Task Save(string directory)
         {
             // Serialize the collections
@@ -154,6 +179,11 @@ namespace ScoutingTools.Data
                 await writer.WriteAsync(allianceEvents);
         }
 
+        /// <summary>
+        /// Loads the Database from the given directory
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <returns></returns>
         public async Task Load(string directory)
         {
             // All of the file infos to load the json from
