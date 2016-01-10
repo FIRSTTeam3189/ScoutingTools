@@ -37,7 +37,7 @@ namespace ScoutingTools.Models
         /// <summary>
         /// All the robots in the match
         /// </summary>
-        public ICollection<int> Robots { get; set; }
+        public ICollection<Team> Robots { get; set; }
 
         /// <summary>
         /// Robot events pertaining to alliance

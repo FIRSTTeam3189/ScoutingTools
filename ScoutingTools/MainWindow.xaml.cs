@@ -28,7 +28,7 @@ namespace ScoutingTools
 
             button.Click += (sender, args) =>
             {
-                Alliance a = new Alliance() {Robots = new List<int>() {10, 20, 30, 40} };
+                Alliance a = new Alliance() {Robots = new List<Team>() {new Team() {Name ="A", Number = 10}, new Team() { Name = "B", Number = 20 }, new Team() { Name = "C", Number = 30 }, new Team() { Name = "D", Number = 40 } } };
                 var win = new RobotEventInput(a);
                 win.Show();
             };
