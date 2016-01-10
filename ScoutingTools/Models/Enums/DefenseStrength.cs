@@ -12,4 +12,14 @@ namespace ScoutingTools.Models.Enums
         Half,
         None
     }
+
+    public class DefenseStrengthUI
+    {
+        public static readonly IReadOnlyDictionary<DefenseStrength, string> UIStrings = new Dictionary<DefenseStrength, string>()
+            {
+                {DefenseStrength.Full, "Full Defense Strength"},
+                {DefenseStrength.Half, "Half Defense Strength"},
+                {DefenseStrength.None, "No Defense Strength"}
+            };
+    }
 }

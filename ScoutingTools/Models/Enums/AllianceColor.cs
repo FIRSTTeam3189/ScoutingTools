@@ -10,4 +10,15 @@ namespace ScoutingTools.Models.Enums
     {
         Red, Blue
     }
+
+    public static class AllianceColorUI
+    {
+        public static readonly IReadOnlyDictionary<AllianceColor, string> UIStrings = new Dictionary
+            <AllianceColor, string>()
+        {
+            {AllianceColor.Blue, "Blue Alliance"},
+            {AllianceColor.Red, "Red Alliance"}
+        };
+    }
+   
 }
