@@ -65,7 +65,24 @@ namespace ScoutingTools.UI
             TeamsList.SelectionChanged += TeamsList_SelectionChanged;
             AddTeamButton.Click += AddTeamButtonOnClick;
             EditTeamButton.Click += EditTeamButtonOnClick;
+            CapabilitiesButton.Click += CapabilitiesButtonOnClick;
+            CapabilitiesButton.IsEnabled = false;
             Grid.DataContext = this;
+        }
+
+        private async void CapabilitiesButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            // Wait for a result from the capability window
+            var result = new TaskCompletionSource<RobotCapability>();
+            var capabilites = new TeamCapabilityInput();
+            capabilites.RobotCapabilityCommited += capability => result.SetResult(capability);
+            CapabilitiesButton.IsEnabled = false;
+            capabilites.Show();
+
+            var madeCapability        = await result.Task;
+            SelectedTeam.Capabilities = madeCapability;
+            CapabilitiesButton.IsEnabled = true;
+            OnPropertyChanged("Teams");
         }
 
         private async void EditTeamButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -122,9 +139,11 @@ namespace ScoutingTools.UI
             if (TeamsList.SelectedIndex < 0)
             {
                 SelectedTeam = null;
+                CapabilitiesButton.IsEnabled = false;
                 return;
             }
             SelectedTeam = Teams[TeamsList.SelectedIndex];
+            CapabilitiesButton.IsEnabled = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

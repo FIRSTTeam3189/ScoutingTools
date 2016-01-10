@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using System.Windows.Media;
 using Newtonsoft.Json;
 
 namespace ScoutingTools.Models
@@ -22,6 +23,8 @@ namespace ScoutingTools.Models
         public int RankingPoints { get; set; }
 
         public string UIString => $"{Number} : {Name ?? ""}";
+
+        public Brush UILabelColor => Capabilities == null ? Brushes.Red : Brushes.LightGreen;
 
         public ICollection<string> EventsAttended { get; set; }
     }

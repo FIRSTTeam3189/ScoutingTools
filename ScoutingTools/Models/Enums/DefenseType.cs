@@ -64,7 +64,7 @@ namespace ScoutingTools.Models.Enums
         public static readonly IReadOnlyDictionary<DefenseType, string>  UIString=new Dictionary<DefenseType, string>()
         {
             {DefenseType.ChevalDeFrise, "Cheval De Frise" },
-            { DefenseType.Portcullis, "Portcullise" },
+            {DefenseType.Portcullis, "Portcullise" },
             {DefenseType.Moat, "Moat" },
             {DefenseType.Drawbridge, "Drawbridge" },
             {DefenseType.Ramparts,"Ramparts" },
@@ -74,5 +74,18 @@ namespace ScoutingTools.Models.Enums
             {DefenseType.LowBar,"Low Bar" },
             {DefenseType.Unassigned,"Unassigned" }
         };
+
+        public static readonly IReadOnlyDictionary<DefenseType, string> CapabilityUIStrings = new Dictionary<DefenseType, string>()
+        {
+            {DefenseType.ChevalDeFrise, "Cheval De Frise" },
+            {DefenseType.Portcullis, "Portcullise" },
+            {DefenseType.Moat, "Moat" },
+            {DefenseType.Drawbridge, "Drawbridge" },
+            {DefenseType.Ramparts,"Ramparts" },
+            {DefenseType.SallyPort, "Sally Port" },
+            {DefenseType.RockWall, "Rock Wall" },
+            {DefenseType.RoughTerrain, "Rough Terrain" },
+            {DefenseType.LowBar,"Low Bar" }
+        }; 
     }
 }

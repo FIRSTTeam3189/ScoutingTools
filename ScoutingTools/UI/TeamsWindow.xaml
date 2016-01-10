@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
-        Title="TeamsWindow" Height="300" Width="450">
+        Title="TeamsWindow" Height="320" Width="450">
     <Grid d:DataContext="{d:DesignInstance local:TeamsWindow}" x:Name="Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="150" Width="150"/>
@@ -18,7 +18,7 @@
             <ListView x:Name="TeamsList" Margin="5,5,5,5" VerticalAlignment="Stretch" ItemsSource="{Binding Teams}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding UIString}"/>
+                        <Label Content="{Binding UIString}" Background="{Binding UILabelColor}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -64,6 +64,7 @@
                 <Button Content="Edit Team" Margin="5" x:Name="EditTeamButton"/>
                 <Button Content="Delete Team" Margin="5" x:Name="DeleteTeamButton"/>
             </StackPanel>
+            <Button Content="Edit Capabilities" x:Name="CapabilitiesButton" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -149,7 +149,9 @@ namespace ScoutingTools.Data
         /// <returns>If it added the team</returns>
         public bool AddTeam(Team team)
         {
-            if (Teams.FirstOrDefault(x => x.Key == team.Key) == null)
+            if (team == null)
+                return false;
+            if (Teams.FirstOrDefault(x => x.Key == (team?.Key ?? "")) == null)
                 Teams.Add(team);
             else
                 return false;

@@ -25,6 +25,11 @@ namespace ScoutingTools.Models
         public int MatchNumber { get; set; }
 
         /// <summary>
+        /// String to show in UI
+        /// </summary>
+        public string UIString => MatchNumber + " : " + Color.ToString();
+
+        /// <summary>
         /// Type of match where the defense took place
         /// </summary>
         public MatchType MatchType { get; set; }

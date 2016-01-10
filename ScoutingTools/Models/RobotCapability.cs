@@ -25,6 +25,21 @@ namespace ScoutingTools.Models
         public double ShootingPercentageHigh { get; set; }
 
         /// <summary>
+        /// Action Points, amount of actions that a robot can take per match
+        /// </summary>
+        public int ActionPoints { get; set; }
+
+        /// <summary>
+        /// Defensive Action cost per crossing a defense
+        /// </summary>
+        public int DefenseActionCost { get; set; }
+
+        /// <summary>
+        /// Offensive action cost per doing offensive action, This affects shooting actions
+        /// </summary>
+        public int ShootingActionCost { get; set; }
+
+        /// <summary>
         /// Missing chance into high goal
         /// </summary>
         public double MissPercentageHigh => 1 - ShootingPercentageHigh;
