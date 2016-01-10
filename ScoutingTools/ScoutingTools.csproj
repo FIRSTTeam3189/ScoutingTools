@@ -63,6 +63,9 @@
     <Compile Include="UI\RobotInput.xaml.cs">
       <DependentUpon>RobotInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility\GamePoints.cs" />
+    <Compile Include="Utility\MathUtil.cs" />
+    <Compile Include="Utility\RobotEventExtensions.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

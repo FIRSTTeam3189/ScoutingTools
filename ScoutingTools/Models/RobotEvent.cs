@@ -42,7 +42,7 @@ namespace ScoutingTools.Models
         /// <summary>
         /// The Scoring play
         /// </summary>
-        public RobotActionType RobotAction { get; set; }
+        public RobotActionType Action { get; set; }
 
         /// <summary>
         /// If other was specified for the robot action

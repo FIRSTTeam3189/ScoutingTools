@@ -26,14 +26,52 @@ namespace ScoutingTools.Data
             instance = new Database();
         }
 
+        /// <summary>
+        /// All of the teams in the database
+        /// </summary>
         public ICollection<Team> Teams { get; private set; }
 
+        /// <summary>
+        /// All of the total robot events that happened in the matches
+        /// </summary>
         public ICollection<RobotEvent> RobotEvents { get; private set; }
 
+        /// <summary>
+        /// All of the configurations that were used for the matches
+        /// </summary>
         public ICollection<DefenseConfiguration> DefenseConfigurations { get; private set; }
 
+        /// <summary>
+        /// All of the alliance events that happened in the matches
+        /// </summary>
         public ICollection<AllianceEvent> AllianceEvents { get; private set; }
 
+        /// <summary>
+        /// All of the matches that happened
+        /// </summary>
+        public ICollection<Match> Matches {
+            get
+            {
+                var groupedAlliances = Alliances.GroupBy(x => x.MatchNumber).Select(x => new {MatchNumber = x.Key, Alliences = x.ToList()});
+                var matches = new List<Match>();
+
+                foreach (var alliance in groupedAlliances)
+                {
+                    var match = new Match();
+                    match.BlueAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Blue);
+                    match.RedAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Red);
+                    match.MatchNumber = alliance.MatchNumber;
+                    match.MatchType = alliance.Alliences[0].MatchType;
+                    matches.Add(match);
+                }
+
+                return matches;
+            }
+        }
+
+        /// <summary>
+        /// All of the alliances in the game
+        /// </summary>
         public ICollection<Alliance> Alliances {
             get
             {
@@ -83,6 +121,11 @@ namespace ScoutingTools.Data
             }
         }
 
-        private Database() {}
+        private Database()
+        {
+            Teams = new List<Team>();
+            RobotEvents = new List<RobotEvent>();
+            DefenseConfigurations = new List<DefenseConfiguration>();
+        }
     }
 }

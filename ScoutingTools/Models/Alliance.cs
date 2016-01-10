@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ScoutingTools.Models.Enums;
+using ScoutingTools.Utility;
 
 namespace ScoutingTools.Models
 {
@@ -27,12 +28,39 @@ namespace ScoutingTools.Models
         /// <summary>
         /// Sum of all points for the alliance for each robot event
         /// </summary>
-        public int PointsCount { get; set; }
+        public int PointsCount {
+            get
+            {
+                var goalPoints = RobotEvents.GetGoalPoints();
+                var defensePoints = RobotEvents.GetCrossPoints();
+                var challengePoints = RobotEvents.GetChallengePoints();
+                var scalePoints = RobotEvents.GetScalePoints();
+                var reachPoints = RobotEvents.GetReachPoints();
+
+                return goalPoints + defensePoints + challengePoints + scalePoints + reachPoints;
+            }
+        }
+
+        public int ExtraRankingPoints => RobotEvents.GetExtraRankingPoints();
 
         /// <summary>
         /// Sum of all points given to other alliance
         /// </summary>
-        public int PointsGiven { get; set; }
+        public int PointsGiven {
+            get
+            {
+                // Let's add up the fouls by the robots and the alliance
+                var robotFouls =
+                    RobotEvents.Where(
+                        x => x.Action == RobotActionType.Foul || x.Action == RobotActionType.TechnicalFoul);
+                var allianceFouls =
+                    AllianceEvents.Where(
+                        x => x.Action == AllianceActionType.Foul || x.Action == AllianceActionType.TechnicalFoul);
+
+                return robotFouls.Count() * GamePoints.Foul +
+                       allianceFouls.Count() * GamePoints.Foul;
+            }
+        }
 
         /// <summary>
         /// All the robots in the match
