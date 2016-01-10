@@ -22,7 +22,7 @@ namespace ScoutingTools.Models
         /// <summary>
         /// The Robot number who made this event
         /// </summary>
-        public int RobotNumber { get; set; }
+        public Team Robot { get; set; }
 
         /// <summary>
         /// Match where this event took place
