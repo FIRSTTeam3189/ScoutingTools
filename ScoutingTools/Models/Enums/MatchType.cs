@@ -17,7 +17,9 @@ namespace ScoutingTools.Models.Enums
     {
         public static readonly IReadOnlyDictionary<MatchType, string> UIStrings = new Dictionary<MatchType, string>()
         {
-            {MatchType.Practice, "Practice Match" }, {MatchType.Qualification, "Qualification Match" }, {MatchType.Playoff, "Playoff Match" }
-        }
+            {MatchType.Practice, "Practice Match"},
+            {MatchType.Qualification, "Qualification Match"},
+            {MatchType.Playoff, "Playoff Match"}
+        };
     }
 }
