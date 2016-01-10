@@ -16,6 +16,8 @@ namespace ScoutingTools.Models
 
         public int Number { get; set; }
 
+        public RobotCapability Capabilities { get; set; }
+
         [JsonIgnore]
         public int RankingPoints { get; set; }
 
