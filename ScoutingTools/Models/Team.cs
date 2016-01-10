@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using Newtonsoft.Json;
 
 namespace ScoutingTools.Models
 {
@@ -14,6 +15,9 @@ namespace ScoutingTools.Models
         public string Name { get; set; }
 
         public int Number { get; set; }
+
+        [JsonIgnore]
+        public int RankingPoints { get; set; }
 
         public string UIString => $"{Number} : {Name ?? ""}";
 

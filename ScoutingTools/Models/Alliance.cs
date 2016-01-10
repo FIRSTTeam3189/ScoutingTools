@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ScoutingTools.Models.Enums;
 using ScoutingTools.Utility;
 
@@ -28,6 +29,7 @@ namespace ScoutingTools.Models
         /// <summary>
         /// Sum of all points for the alliance for each robot event
         /// </summary>
+        [JsonIgnore]
         public int PointsCount {
             get
             {
@@ -41,11 +43,13 @@ namespace ScoutingTools.Models
             }
         }
 
+        [JsonIgnore]
         public int ExtraRankingPoints => RobotEvents.GetExtraRankingPoints();
 
         /// <summary>
         /// Sum of all points given to other alliance
         /// </summary>
+        [JsonIgnore]
         public int PointsGiven {
             get
             {

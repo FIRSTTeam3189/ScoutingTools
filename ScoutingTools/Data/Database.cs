@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using Newtonsoft.Json;
 using ScoutingTools.Models;
 using ScoutingTools.Models.Enums;
 
@@ -12,6 +15,10 @@ namespace ScoutingTools.Data
 {
     public class Database
     {
+        private const string TeamsJson = "teams.json";
+        private const string RoboteventsJson = "robotEvents.json";
+        private const string DefenseconfigurationsJson = "defenseConfigurations.json";
+        private const string AllianceeventsJson = "allianceEvents.json";
         static Database instance;
 
         public static Database Instance => instance;
@@ -53,19 +60,11 @@ namespace ScoutingTools.Data
             get
             {
                 var groupedAlliances = Alliances.GroupBy(x => x.MatchNumber).Select(x => new {MatchNumber = x.Key, Alliences = x.ToList()});
-                var matches = new List<Match>();
 
-                foreach (var alliance in groupedAlliances)
+                return groupedAlliances.Select(alliance => new Match
                 {
-                    var match = new Match();
-                    match.BlueAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Blue);
-                    match.RedAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Red);
-                    match.MatchNumber = alliance.MatchNumber;
-                    match.MatchType = alliance.Alliences[0].MatchType;
-                    matches.Add(match);
-                }
-
-                return matches;
+                    BlueAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Blue), RedAlliance = alliance.Alliences.First(x => x.Color == AllianceColor.Red), MatchNumber = alliance.MatchNumber, MatchType = alliance.Alliences[0].MatchType
+                }).ToList();
             }
         }
 
@@ -75,6 +74,7 @@ namespace ScoutingTools.Data
         public ICollection<Alliance> Alliances {
             get
             {
+                // Group The data by match number then join on matching number
                 var eventMatchGroup =
                     RobotEvents.GroupBy(x => x.MatchNumber).Select(x => new {ForMatch = x.Key, Event = x.ToList()});
                 var allianceMatchGroup =
@@ -121,11 +121,77 @@ namespace ScoutingTools.Data
             }
         }
 
+        public async Task Save(string directory)
+        {
+            // Serialize the collections
+            var teams = JsonConvert.SerializeObject(Teams);
+            var robotEvents = JsonConvert.SerializeObject(RobotEvents);
+            var defenseConfigurations = JsonConvert.SerializeObject(DefenseConfigurations);
+            var allianceEvents = JsonConvert.SerializeObject(AllianceEvents);
+
+            var directoryInfo = new DirectoryInfo(directory);
+            if (!directoryInfo.Exists)
+                directoryInfo.Create();
+
+            // All of the file infos to save the json at
+            var teamFile = new FileInfo(Path.Combine(directory, TeamsJson));
+            var robotEventFile = new FileInfo(Path.Combine(directory, RoboteventsJson));
+            var defenseConfigurationFile = new FileInfo(Path.Combine(directory, DefenseconfigurationsJson));
+            var allianceEventFile = new FileInfo(Path.Combine(directory, AllianceeventsJson));
+
+            // Write all of the data
+            using (var writer = new StreamWriter(teamFile.OpenWrite()))
+                await writer.WriteAsync(teams);
+
+            using (var writer = new StreamWriter(robotEventFile.OpenWrite()))
+                await writer.WriteAsync(robotEvents);
+
+            using (var writer = new StreamWriter(defenseConfigurationFile.OpenWrite()))
+                await writer.WriteAsync(defenseConfigurations);
+
+            using (var writer = new StreamWriter(allianceEventFile.OpenWrite()))
+                await writer.WriteAsync(allianceEvents);
+        }
+
+        public async Task Load(string directory)
+        {
+            // All of the file infos to load the json from
+            var teamFile = new FileInfo(Path.Combine(directory, TeamsJson));
+            var robotEventFile = new FileInfo(Path.Combine(directory, RoboteventsJson));
+            var defenseConfigurationFile = new FileInfo(Path.Combine(directory, DefenseconfigurationsJson));
+            var allianceEventFile = new FileInfo(Path.Combine(directory, AllianceeventsJson));
+
+            string teamsJson = "";
+            string robotEventsJson = "";
+            string defenseConfigurationsJson = "";
+            string allianceEventsJson = "";
+
+            // Read in all the json
+            using (var reader = new StreamReader(teamFile.OpenRead()))
+                teamsJson = await reader.ReadToEndAsync();
+
+            using (var reader = new StreamReader(robotEventFile.OpenRead()))
+                robotEventsJson = await reader.ReadToEndAsync();
+
+            using (var reader = new StreamReader(defenseConfigurationFile.OpenRead()))
+                defenseConfigurationsJson = await reader.ReadToEndAsync();
+
+            using (var reader = new StreamReader(allianceEventFile.OpenRead()))
+                allianceEventsJson = await reader.ReadToEndAsync();
+
+            Teams = JsonConvert.DeserializeObject<ICollection<Team>>(teamsJson);
+            RobotEvents = JsonConvert.DeserializeObject<ICollection<RobotEvent>>(robotEventsJson);
+            DefenseConfigurations =
+                JsonConvert.DeserializeObject<ICollection<DefenseConfiguration>>(defenseConfigurationsJson);
+            AllianceEvents = JsonConvert.DeserializeObject<ICollection<AllianceEvent>>(allianceEventsJson);
+        }
+
         private Database()
         {
             Teams = new List<Team>();
             RobotEvents = new List<RobotEvent>();
             DefenseConfigurations = new List<DefenseConfiguration>();
+            AllianceEvents = new List<AllianceEvent>();
         }
     }
 }
