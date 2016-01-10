@@ -28,9 +28,10 @@ namespace ScoutingTools.Data
             instance = new Database();
         }
 
-        public static void Initialize(string fromDirectory)
+        public static async Task Initialize(string fromDirectory)
         {
             instance = new Database();
+            await instance.Load(fromDirectory);
         }
 
         /// <summary>
