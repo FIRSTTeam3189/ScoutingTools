@@ -12,4 +12,12 @@ namespace ScoutingTools.Models.Enums
         Teleop,
         Final
     }
+
+    public class MatchPeriodUI
+    {
+        public static readonly IReadOnlyDictionary<MatchPeriod, string> UIStrings = new Dictionary<MatchPeriod, string>()
+        {
+            {MatchPeriod.Autonomous, "Autonomous" }, { MatchPeriod.Teleop, "Teleoperated" }, {MatchPeriod.Final, "Final" }
+        };
+    }
 }

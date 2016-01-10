@@ -11,4 +11,14 @@ namespace ScoutingTools.Models.Enums
         Foul,
         TechnicalFoul
     }
+
+    public class AllianceActionTypeUI
+    {
+        public static readonly IReadOnlyDictionary<AllianceActionType, string> UIStrings = new Dictionary
+            <AllianceActionType, string>()
+        {
+            {AllianceActionType.Foul, "Foul"},
+            {AllianceActionType.TechnicalFoul, "Techinal Foul"}
+        };
+    }
 }
