@@ -143,6 +143,21 @@ namespace ScoutingTools.Data
         }
 
         /// <summary>
+        /// Add The Team if it doesn't exist already
+        /// </summary>
+        /// <param name="team">Team to add</param>
+        /// <returns>If it added the team</returns>
+        public bool AddTeam(Team team)
+        {
+            if (Teams.FirstOrDefault(x => x.Key == team.Key) == null)
+                Teams.Add(team);
+            else
+                return false;
+
+            return true;
+        }
+
+        /// <summary>
         /// Saves the Database to disk for the given directory
         /// </summary>
         /// <param name="directory"></param>

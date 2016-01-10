@@ -1,0 +1,69 @@
+﻿<Window x:Class="ScoutingTools.UI.TeamsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="TeamsWindow" Height="300" Width="450">
+    <Grid d:DataContext="{d:DesignInstance local:TeamsWindow}" x:Name="Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="150" Width="150"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel LastChildFill="True" >
+            <Label Content="Teams" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+            <ListView x:Name="TeamsList" Margin="5,5,5,5" VerticalAlignment="Stretch" ItemsSource="{Binding Teams}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding UIString}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+        
+        <StackPanel Orientation="Vertical" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Number:" />
+                <Label Content="{Binding SelectedTeam.Number}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Name:" />
+                <Label Content="{Binding SelectedTeam.Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Rank:" />
+                <Label Content="{Binding SelectedTeamInfo.Rank}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Offensive Rating:" />
+                <Label Content="{Binding SelectedTeamInfo.OffensiveRating}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Defensive Rating:" />
+                <Label Content="{Binding SelectedTeamInfo.DefensiveRating}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Actions Per Game:" />
+                <Label Content="{Binding SelectedTeamInfo.ActionsPerGame}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Points Scored:" />
+                <Label Content="{Binding SelectedTeamInfo.PointsScored}" Background="LightGreen"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Foul Points:" />
+                <Label Content="{Binding SelectedTeamInfo.PointsGiven}" Background="LightCoral"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                <Button Content="Add Team" Margin="5" x:Name="AddTeamButton"/>
+                <Button Content="Edit Team" Margin="5" x:Name="EditTeamButton"/>
+                <Button Content="Delete Team" Margin="5" x:Name="DeleteTeamButton"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

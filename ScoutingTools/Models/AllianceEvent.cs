@@ -20,7 +20,7 @@ namespace ScoutingTools.Models
         public string EventCode { get; set; }
 
         /// <summary>
-        /// Match number where it took place
+        /// Match number where it took place. my name is gaymes and i like men.
         /// </summary>
         public int MatchNumber { get; set; }
 

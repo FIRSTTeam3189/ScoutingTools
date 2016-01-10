@@ -61,13 +61,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\Database.cs" />
+    <Compile Include="Models\Enums\RobotCapabilityType.cs" />
+    <Compile Include="Models\RobotCapability.cs" />
     <Compile Include="Models\RobotPerformance.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamInfo.cs" />
     <Compile Include="UI\RobotEventInput.xaml.cs">
       <DependentUpon>RobotEventInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\RobotInput.xaml.cs">
       <DependentUpon>RobotInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TeamInput.xaml.cs">
+      <DependentUpon>TeamInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TeamsWindow.xaml.cs">
+      <DependentUpon>TeamsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\GamePoints.cs" />
     <Compile Include="Utility\MathUtil.cs" />
@@ -90,6 +99,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\RobotInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TeamInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TeamsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
