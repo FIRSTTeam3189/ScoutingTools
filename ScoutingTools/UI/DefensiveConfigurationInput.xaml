@@ -1,0 +1,65 @@
+﻿<Window x:Class="ScoutingTools.UI.DefensiveConfigurationInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="DefensiveConfigurationInput" Height="300" Width="300">
+    <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:DefensiveConfigurationInput}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="0" Grid.Row="0">
+            <Label DockPanel.Dock="Top" Content="Category A Defense" HorizontalAlignment="Center"/>
+                <ListView x:Name="CategoryADefenseSelection" ItemsSource="{Binding CategoryA}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Value}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </DockPanel>
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="1" Grid.Row="0">
+            <Label DockPanel.Dock="Top" Content="Category B Defense" HorizontalAlignment="Center"/>
+            <ListView x:Name="CategoryBDefenseSelection" ItemsSource="{Binding CategoryB}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="0" Grid.Row="1">
+            <Label DockPanel.Dock="Top" Content="Category C Defense" HorizontalAlignment="Center"/>
+            <ListView x:Name="CategoryCDefenseSelection" ItemsSource="{Binding CategoryC}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="1" Grid.Row="1">
+            <Label DockPanel.Dock="Top" Content="Category D Defense" HorizontalAlignment="Center"/>
+            <ListView x:Name="CategoryDDefenseSelection" ItemsSource="{Binding CategoryD}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+
+        <Button Grid.Row="3" Content="Cancel" x:Name="CancelButton"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Commit" x:Name="CommitButton"/>
+    </Grid>
+</Window>
