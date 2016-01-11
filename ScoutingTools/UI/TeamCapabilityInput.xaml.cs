@@ -35,6 +35,8 @@ namespace ScoutingTools.UI
 
         public double FoulPercentage { get; set; }
 
+        public double ChallengePercentage { get; set; }
+
         public int ActionPoints { get; set; }
 
         public int ShootingActionCost { get; set; }
@@ -62,6 +64,7 @@ namespace ScoutingTools.UI
             ActionPoints = capability.ActionPoints;
             ShootingActionCost = capability.ShootingActionCost;
             DefensiveActionCost = capability.DefenseActionCost;
+            ChallengePercentage = capability.ChallengePercentage;
         }
 
         private void CommitButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -80,7 +83,8 @@ namespace ScoutingTools.UI
                 FoulPercentage = FoulPercentage,
                 HungPercentage = HangPercentage,
                 DefenseActionCost = DefensiveActionCost,
-                ShootingActionCost = ShootingActionCost
+                ShootingActionCost = ShootingActionCost,
+                ChallengePercentage = ChallengePercentage
             };
 
             RobotCapabilityCommited?.Invoke(capability);

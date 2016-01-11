@@ -65,6 +65,16 @@ namespace ScoutingTools.Models
         public double NotHungPercentage => 1 - HungPercentage;
 
         /// <summary>
+        /// Chance of challenge at the end of the game
+        /// </summary>
+        public double ChallengePercentage { get; set; }
+
+        /// <summary>
+        /// Chance they won't challenge at the end of the game
+        /// </summary>
+        public double NoChallengePercentage => 1 - ChallengePercentage;
+
+        /// <summary>
         /// Chance of fouling during match
         /// </summary>
         public double FoulPercentage { get; set; }

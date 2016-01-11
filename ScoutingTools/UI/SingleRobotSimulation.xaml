@@ -6,17 +6,18 @@
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
         Title="SingleRobotSimulation" Height="600" Width="800">
-    <Grid d:DataContext="{d:DesignInstance local:SingleRobotSimulation}">
+    <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:SingleRobotSimulation}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DockPanel LastChildFill="True" Margin="5">
             <Label Content="Robot To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <ListView x:Name="RobotSelection" SelectionMode="Single" ItemsSource="{Binding Teams}">
+            <ListView x:Name="RobotSelection" SelectionMode="Single" ItemsSource="{Binding Teams}" SelectionChanged="RobotSelection_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding UIString}"/>
@@ -26,7 +27,7 @@
         </DockPanel>
         <DockPanel LastChildFill="True" Margin="5" Grid.Column="1">
             <Label Content="Defense To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <ListView x:Name="DefeseSelection" SelectionMode="Single" ItemsSource="{Binding Defenses}">
+            <ListView x:Name="DefenseSelection" SelectionMode="Single" ItemsSource="{Binding Defenses}" SelectionChanged="DefenseSelection_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding UIString}"/>
@@ -36,7 +37,7 @@
         </DockPanel>
         <DockPanel LastChildFill="True" Margin="5" Grid.Column="2">
             <Label Content="Algorithm To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <ListView x:Name="AlgorithmSelection" SelectionMode="Single" ItemsSource="{Binding Algorithms}">
+            <ListView x:Name="AlgorithmSelection" SelectionMode="Single" ItemsSource="{Binding Algorithms}" SelectionChanged="AlgorithmSelection_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Key}"/>
@@ -93,6 +94,34 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="4">
+            <Label Content="Defense Info"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot One: "/>
+                <Label Content="{Binding SelectedDefense.SlotOneUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Two: "/>
+                <Label Content="{Binding SelectedDefense.SlotTwoUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Three: "/>
+                <Label Content="{Binding SelectedDefense.SlotThreeUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Four: "/>
+                <Label Content="{Binding SelectedDefense.SlotFourUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Five: " />
+                <Label Content="{Binding SelectedDefense.SlotFiveUI}" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="5">
+            <Button Content="Calculate" Height="40" Margin="5" x:Name="CalculateButton"/>
+            <Label Content="RESULT" HorizontalAlignment="Center"/>
+            <Label Content="{Binding CalculatedValue}"/>
         </StackPanel>
     </Grid>
 </Window>

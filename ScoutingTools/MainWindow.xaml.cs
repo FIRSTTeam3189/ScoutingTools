@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using ScoutingTools.Algorithms;
 using ScoutingTools.Data;
 using ScoutingTools.Models;
 using ScoutingTools.UI;
@@ -37,6 +38,19 @@ namespace ScoutingTools
             InitializeDatabaseButton.Click += (sender, args) => InitData();
             ViewTeamsButton.Click += (sender, args) => (new TeamsWindow(Database.Instance.Teams)).Show();
             ViewDefenseConfigurationsButton.Click += (x, args) => (new DefensiveConfigurations(Database.Instance.DefenseConfigurations)).Show();
+            SimulateData.Click += SimulateDataOnClick;
+        }
+
+        private void SimulateDataOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var teams = Database.Instance.Teams;
+            var def = Database.Instance.DefenseConfigurations;
+            var algorithms = new Dictionary<string, Func<Team, DefenseConfiguration, double>>()
+            {
+                {"Score Calculturminer", StatisticalAlgorithms.ScoreCalculturminer }
+            };
+            var window = new SingleRobotSimulation(teams, def, algorithms);
+            window.Show();
         }
 
         public void SetDirectory()
