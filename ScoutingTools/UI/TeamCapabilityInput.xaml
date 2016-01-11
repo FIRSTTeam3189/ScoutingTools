@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
-        Title="TeamCapabilityInput" Height="600" Width="400">
+        Title="TeamCapabilityInput" Height="660" Width="400">
     <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:TeamCapabilityInput}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -81,7 +81,7 @@
                 <TextBox Width="100" Text="{Binding ShootingActionCost}" x:Name="ShootingActionCostBox"/>
             </StackPanel>
         </StackPanel>
-        <Button Grid.Row="4" Content="Cancel" x:Name="CancelButton" />
+        <Button Height="40"  Grid.Row="4" Content="Cancel" x:Name="CancelButton" />
         <Button Grid.Row="4" Grid.Column="1" Content="Commit" x:Name="CommitButton" />
     </Grid>
 </Window>
