@@ -9,6 +9,23 @@ namespace ScoutingTools.Models
 {
     public class DefenseConfiguration
     {
+        private static string ShortStringForDefense(DefenseType type)
+        {
+            var types = Enum.GetValues(typeof (DefenseType));
+            var letterChar = type == DefenseType.ChevalDeFrise || type == DefenseType.Portcullis
+                ? "A"
+                : type == DefenseType.Drawbridge || type == DefenseType.Moat
+                    ? "B"
+                    : type == DefenseType.Ramparts || type == DefenseType.SallyPort
+                        ? "C"
+                        : type == DefenseType.RockWall || type == DefenseType.RoughTerrain ? "D" : "L";
+            var numberChar = type == DefenseType.Portcullis || type == DefenseType.Moat || type == DefenseType.Ramparts ||
+                             type == DefenseType.RoughTerrain || type == DefenseType.LowBar
+                ? "1"
+                : "2";
+
+            return letterChar + numberChar;
+        }
         /// <summary>
         /// Unique Key
         /// </summary>
@@ -27,7 +44,7 @@ namespace ScoutingTools.Models
         /// <summary>
         /// String to show in UI
         /// </summary>
-        public string UIString => MatchNumber + " : " + Color.ToString();
+        public string UIString => $"{ShortStringForDefense(SlotOne)} : {ShortStringForDefense(SlotTwo)} : {ShortStringForDefense(SlotThree)} : {ShortStringForDefense(SlotFour)} : {ShortStringForDefense(SlotFive)}";
 
         /// <summary>
         /// Type of match where the defense took place

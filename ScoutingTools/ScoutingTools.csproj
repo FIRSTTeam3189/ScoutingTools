@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Algorithms\SimulationAlgorithms.cs" />
     <Compile Include="Algorithms\StatisticalAlgorithms.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Models\Enums\RobotCapabilityType.cs" />

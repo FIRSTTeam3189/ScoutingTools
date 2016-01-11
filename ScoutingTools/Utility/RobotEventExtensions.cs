@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ScoutingTools.Models;
 using ScoutingTools.Models.Enums;
 
@@ -119,6 +120,18 @@ namespace ScoutingTools.Utility
         {
             return
                 events.Count(x => x.Action == RobotActionType.ShootIntoHigh || x.Action == RobotActionType.ShootIntoLow);
+        }
+
+        /// <summary>
+        /// Score if the events are for a single robot. Not made for scoring alliances.
+        /// </summary>
+        /// <param name="events">The Events to score</param>
+        /// <returns></returns>
+        public static int GetSoloRobotPointsCount(this ICollection<RobotEvent> events)
+        {
+            return events.GetGoalCount() + events.GetCrossPoints() + events.GetReachPoints() +
+                   (events.Count(x => x.Action == RobotActionType.Challenge) > 0 ? GamePoints.Challenge : 0) +
+                   (events.Count(x => x.Action == RobotActionType.Scale) > 0 ? GamePoints.Scale : 0);
         }
 
         /// <summary>
