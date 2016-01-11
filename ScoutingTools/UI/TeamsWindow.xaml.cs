@@ -82,7 +82,6 @@ namespace ScoutingTools.UI
             var madeCapability        = await result.Task;
             SelectedTeam.Capabilities = madeCapability;
             CapabilitiesButton.IsEnabled = true;
-            OnPropertyChanged("Teams");
         }
 
         private async void EditTeamButtonOnClick(object sender, RoutedEventArgs routedEventArgs)

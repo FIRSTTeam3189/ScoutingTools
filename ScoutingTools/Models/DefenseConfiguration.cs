@@ -44,24 +44,34 @@ namespace ScoutingTools.Models
         /// </summary>
         public DefenseType SlotOne { get; set; }
 
+        public string SlotOneUI => DefenseTypeUI.UIString[SlotOne];
+
         /// <summary>
         /// Defense in slot two
         /// </summary>
         public DefenseType SlotTwo { get; set; }
+
+        public string SlotTwoUI => DefenseTypeUI.UIString[SlotTwo];
 
         /// <summary>
         /// Defense in slot three
         /// </summary>
         public DefenseType SlotThree { get; set; }
 
+        public string SlotThreeUI => DefenseTypeUI.UIString[SlotThree];
+
         /// <summary>
         /// Defense in slot four
         /// </summary>
         public DefenseType SlotFour { get; set; }
 
+        public string SlotFourUI => DefenseTypeUI.UIString[SlotFour];
+
         /// <summary>
         /// Defense in slot five
         /// </summary>
         public DefenseType SlotFive { get; set; }
+
+        public string SlotFiveUI => DefenseTypeUI.UIString[SlotFive];
     }
 }
