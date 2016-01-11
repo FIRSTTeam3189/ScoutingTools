@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
-        Title="SingleRobotSimulation" Height="600" Width="800">
+        Title="SingleRobotSimulation" Height="800" Width="900">
     <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:SingleRobotSimulation}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

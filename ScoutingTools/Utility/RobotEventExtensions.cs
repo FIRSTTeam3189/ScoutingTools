@@ -45,11 +45,11 @@ namespace ScoutingTools.Utility
         {
             var highTeleopPoints = events.Count(
                     x => x.Action == RobotActionType.ShootIntoHigh &&
-                        (x.MatchPeriod == MatchPeriod.Teleop || x.MatchPeriod == MatchPeriod.Final)) *
+                        (x.MatchPeriod != MatchPeriod.Autonomous)) *
                                        GamePoints.HighGoalTeleop;
             var lowTeleopPoints = events.Count(
                 x => x.Action == RobotActionType.ShootIntoLow &&
-                    (x.MatchPeriod == MatchPeriod.Teleop || x.MatchPeriod == MatchPeriod.Final)) *
+                    (x.MatchPeriod != MatchPeriod.Autonomous)) *
                                   GamePoints.LowGoalTeleop;
             var highAutoPoints = events.Count(
                 x => x.Action == RobotActionType.ShootIntoHigh && x.MatchPeriod == MatchPeriod.Autonomous) *
@@ -129,7 +129,7 @@ namespace ScoutingTools.Utility
         /// <returns></returns>
         public static int GetSoloRobotPointsCount(this ICollection<RobotEvent> events)
         {
-            return events.GetGoalCount() + events.GetCrossPoints() + events.GetReachPoints() +
+            return events.GetGoalPoints() + events.GetCrossPoints() + events.GetReachPoints() +
                    (events.Count(x => x.Action == RobotActionType.Challenge) > 0 ? GamePoints.Challenge : 0) +
                    (events.Count(x => x.Action == RobotActionType.Scale) > 0 ? GamePoints.Scale : 0);
         }

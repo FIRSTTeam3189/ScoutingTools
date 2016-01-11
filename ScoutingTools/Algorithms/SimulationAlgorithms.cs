@@ -12,7 +12,7 @@ namespace ScoutingTools.Algorithms
     public class SimulationAlgorithms
     {
         static readonly Random random = new Random();
-        private const int Runs = 100;
+        private const int Runs = 1000;
 
         private static int totalMisses = 0;
         private static int totalMakes = 0;
