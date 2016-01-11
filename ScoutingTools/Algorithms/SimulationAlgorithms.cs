@@ -14,12 +14,18 @@ namespace ScoutingTools.Algorithms
         static readonly Random random = new Random();
         private const int Runs = 100;
 
+        private static int totalMisses = 0;
+        private static int totalMakes = 0;
+
         public static double ScoreDetermilate(Team team, DefenseConfiguration defense)
         {
             var cap = team.Capabilities;
             var actions = cap.ActionPoints;
             var bestValue = 0.0;
-            
+
+            totalMisses = 0;
+            totalMakes = 0;
+
             // Add the reach event if the robot can
             if (cap.Abilities.Contains(RobotCapabilityType.Reach))
                 bestValue = 2;
@@ -35,7 +41,7 @@ namespace ScoutingTools.Algorithms
                 calculatedScores.Add(GetScoreWithCrossing(actions, cap.CrossableSlots(defense) - i,
                     cap.ShootingPercentageHigh, cap.ShootingPercentageLow, cap.DefenseActionCost, cap.ShootingActionCost));
             }
-            bestValue += calculatedScores.OrderByDescending(x => x).First();
+            bestValue += calculatedScores.Max();
             
             // Take into account the challenge and hang abilities
             if (cap.Abilities.Contains(RobotCapabilityType.Challenge))
@@ -92,16 +98,17 @@ namespace ScoutingTools.Algorithms
             // While we still have ap
             while (ap > 0 && ((ap - crossCost) > 0 || (ap - shootCost) > 0))
             {
-                // First Condition: Is list empty?
-                if (events.Count == 0)
+                if (IsLastAMiss(events))
                 {
-                    // Add a cross and deduct cross cost
-                    AddCross(events, crossableSlots);
-                    ap -= crossCost;
-                } else if (IsLastACross(events)) {
+                    // Generate 
+                    AddShot(events, highPercent, lowPercent);
+                    ap -= shootCost;
+                }
+                else if (IsLastACross(events))
+                {
                     // Generate a shot event and deduct cross + shoot cost
                     AddShot(events, highPercent, lowPercent);
-                    ap -= crossCost + shootCost;
+                    ap -= (crossCost + shootCost);
                 }
                 else
                 {
@@ -110,6 +117,12 @@ namespace ScoutingTools.Algorithms
                     ap -= crossCost;
                 }
             }
+
+            totalMisses +=
+                events.Count(
+                    x => x.Action == RobotActionType.MissedHighGoal || x.Action == RobotActionType.MissedLowGoal);
+            totalMakes +=
+                events.Count(x => x.Action == RobotActionType.ShootIntoHigh || x.Action == RobotActionType.ShootIntoLow);
 
             return events;
         }
@@ -198,10 +211,30 @@ namespace ScoutingTools.Algorithms
         /// <returns>If last event was a cross</returns>
         static bool IsLastACross(List<RobotEvent> events)
         {
+            if (events.Count == 0)
+                return false;
             var last = events[events.Count - 1];
             return last.Action == RobotActionType.CrossDefenseOne || last.Action == RobotActionType.CrossDefenseTwo ||
                    last.Action == RobotActionType.CrossDefenseThree || last.Action == RobotActionType.CrossDefenseFour ||
                    last.Action == RobotActionType.CrossDefenseFive;
+        }
+
+        static bool IsLastAMiss(List<RobotEvent> events)
+        {
+            if (events.Count == 0)
+                return false;
+
+            var last = events[events.Count - 1];
+            return last.Action == RobotActionType.MissedHighGoal || last.Action == RobotActionType.MissedLowGoal;
+        }
+
+        static bool IsLastAMade(List<RobotEvent> events)
+        {
+            if (events.Count == 0)
+                return false;
+
+            var last = events[events.Count - 1];
+            return last.Action == RobotActionType.ShootIntoHigh || last.Action == RobotActionType.ShootIntoLow;
         }
     }
 }

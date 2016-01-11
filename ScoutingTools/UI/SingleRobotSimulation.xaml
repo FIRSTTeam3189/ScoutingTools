@@ -122,7 +122,7 @@
             <Button Content="Calculate" Height="40" Margin="5" x:Name="CalculateButton"/>
             <Button Content="Calculate All" Height="40" Margin="5" x:Name="CalculateAll"/>
             <Label Content="RESULT" HorizontalAlignment="Center"/>
-            <Label Content="{Binding CalculatedValue, StringFormat=N3}" HorizontalAlignment="Center" FontSize="16"/>
+            <Label Content="{Binding CalculatedValue}" ContentStringFormat="{}{0:N2}" HorizontalAlignment="Center" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Window>

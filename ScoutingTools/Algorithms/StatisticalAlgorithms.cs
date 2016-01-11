@@ -10,6 +10,7 @@ namespace ScoutingTools.Algorithms
 {
     public class StatisticalAlgorithms
     {
+
         public static double ScoreCalculturminer(Team team, DefenseConfiguration defense)
         {
             var capabilities = team.Capabilities;
@@ -24,10 +25,14 @@ namespace ScoutingTools.Algorithms
 
             double total = capabilities.HungPercentage * 15;
             total += capabilities.ChallengePercentage * 5;
-            total += capabilities.CrossableSlots(defense) * 10;
 
-            double high = 2 * capabilities.DefenseActionCost / 130.0 * capabilities.ShootingPercentageHigh * 5;
-            double low  = 2 * capabilities.DefenseActionCost / 130.0 * capabilities.ShootingPercentageLow;
+            for (int i = 0; (i < (int)(130.0 / capabilities.DefenseActionCost)) && (i < capabilities.CrossableSlots(defense) * 2); ++i)
+            {
+                total += 5;
+            }
+
+            double high = 130.0 / (2*capabilities.DefenseActionCost) * capabilities.ShootingPercentageHigh * 5;
+            double low  = 130.0 / (2*capabilities.DefenseActionCost)* capabilities.ShootingPercentageLow;
 
             if (high > low)
             {

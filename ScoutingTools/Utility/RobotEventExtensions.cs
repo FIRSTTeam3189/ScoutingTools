@@ -19,7 +19,7 @@ namespace ScoutingTools.Utility
         public static int GetExtraRankingPoints(this ICollection<RobotEvent> events)
         {
             int rp = 0;
-            if (events.GetDefensesBreached() >= GamePoints.BreachesBeforeRanking)
+            if (events.GetDefensesDamaged() >= GamePoints.BreachesBeforeRanking)
                 rp += 1;
             if (events.IsTowerDefenseDown() && events.Count(x => x.Action == RobotActionType.Challenge) >= 3)
                 rp += 1;
@@ -27,7 +27,7 @@ namespace ScoutingTools.Utility
             return rp;
         }
 
-        private static int GetDefensesBreached(this ICollection<RobotEvent> events)
+        private static int GetDefensesDamaged(this ICollection<RobotEvent> events)
         {
             return events.Count(x => x.Action == RobotActionType.CrossDefenseOne).Clamp(0, 2)/2 +
                    events.Count(x => x.Action == RobotActionType.CrossDefenseTwo).Clamp(0, 2)/2 +
@@ -103,12 +103,12 @@ namespace ScoutingTools.Utility
 
         private static int PointsForCross(this ICollection<RobotEvent> events, RobotActionType crossType)
         {
-            return (events.Count(
-                x => x.Action == crossType && x.MatchPeriod == MatchPeriod.Autonomous)
-                .Clamp(0, 1)*GamePoints.CrossDefenseAuto +
-                    events.Count(
-                        x => x.Action == crossType && x.MatchPeriod != MatchPeriod.Autonomous)
-                        .Clamp(0, 1)*GamePoints.CrossDefenseTeleop).Clamp(0, GamePoints.CrossDefenseAuto);
+            int autoCrosses = events.Count(x => x.Action == crossType && x.MatchPeriod == MatchPeriod.Autonomous).Clamp(0, 2);
+            int teleopCrosses =
+                events.Count(x => x.Action == crossType && x.MatchPeriod != MatchPeriod.Autonomous).Clamp(0, 2) -
+                autoCrosses;
+
+            return autoCrosses*GamePoints.CrossDefenseAuto + teleopCrosses*GamePoints.CrossDefenseTeleop;
         }
 
         /// <summary>
