@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ScoutingTools.Models;
 using ScoutingTools.Models.Enums;
 
 namespace ScoutingTools.UI
@@ -44,12 +45,41 @@ namespace ScoutingTools.UI
         {
             {DefenseType.RockWall, "Rock Wall" },
             {DefenseType.RoughTerrain, "Rough Terrain" }
-        }; 
+        };
+
+        public event Action<DefenseConfiguration> ConfigurationCreated;
+
         public DefensiveConfigurationInput()
         {
             InitializeComponent();
 
             Grid.DataContext = this;
+            CommitButton.Click += CommitButtonClicked;
+        }
+
+        private void CommitButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (CategoryADefenseSelection.SelectedIndex < 0 || CategoryBDefenseSelection.SelectedIndex < 0 ||
+                CategoryCDefenseSelection.SelectedIndex < 0 || CategoryDDefenseSelection.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            var categoryA = ((KeyValuePair<DefenseType, string>) CategoryADefenseSelection.SelectedItem).Key;
+            var categoryB = ((KeyValuePair<DefenseType, string>) CategoryBDefenseSelection.SelectedItem).Key;
+            var categoryC = ((KeyValuePair<DefenseType, string>) CategoryCDefenseSelection.SelectedItem).Key;
+            var categoryD = ((KeyValuePair<DefenseType, string>) CategoryDDefenseSelection.SelectedItem).Key;
+            
+            ConfigurationCreated?.Invoke(new DefenseConfiguration()
+            {
+                SlotOne = DefenseType.LowBar,
+                SlotTwo = categoryA,
+                SlotThree = categoryB,
+                SlotFour =  categoryC,
+                SlotFive = categoryD,
+                Key = DateTime.Now.ToLongDateString()
+            });
+            Close();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

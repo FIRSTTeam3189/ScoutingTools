@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScoutingTools.UI"
         mc:Ignorable="d"
-        Title="DefensiveConfigurations" Height="250" Width="600">
+        Title="DefensiveConfigurations" Height="270" Width="600">
     <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:DefensiveConfigurations}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ScoutingTools.Data;
 using ScoutingTools.Models;
 using ScoutingTools.Models.Enums;
 
@@ -47,6 +48,27 @@ namespace ScoutingTools.UI
 
             DefenseConfigurations = new ObservableCollection<DefenseConfiguration>(defenses);
             Grid.DataContext = this;
+            AddDefense.Click += AddDefenseOnClick;
+            EditDefense.IsEnabled = false;
+        }
+
+        private async void AddDefenseOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var input = new DefensiveConfigurationInput();
+            var result = new TaskCompletionSource<DefenseConfiguration>();
+
+            AddDefense.IsEnabled = false;
+            input.Closed += (o, args) => { if (!result.Task.IsCompleted) result.SetResult(null); };
+            input.ConfigurationCreated += configuration => result.SetResult(configuration);
+            input.Show();
+            var config = await result.Task;
+            AddDefense.IsEnabled = true;
+
+            if (config == null)
+                return;
+
+            Database.Instance.DefenseConfigurations.Add(config);
+            DefenseConfigurations.Add(config);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -53,6 +53,17 @@ namespace ScoutingTools.UI
             CommitButton.Click += CommitButtonOnClick;
         }
 
+        public TeamCapabilityInput(RobotCapability capability) : this()
+        {
+            HighPercentage = capability.ShootingPercentageHigh;
+            LowPercentage = capability.ShootingPercentageLow;
+            FoulPercentage = capability.FoulPercentage;
+            HangPercentage = capability.HungPercentage;
+            ActionPoints = capability.ActionPoints;
+            ShootingActionCost = capability.ShootingActionCost;
+            DefensiveActionCost = capability.DefenseActionCost;
+        }
+
         private void CommitButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
             var selectedActions = SelectedCapabilities.SelectedItems.Cast<KeyValuePair<RobotCapabilityType, string>>().Select(x => x.Key).ToList();

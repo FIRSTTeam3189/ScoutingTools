@@ -36,7 +36,7 @@ namespace ScoutingTools
             LoadDatabaseButton.Click += async (sender, args) => await LoadData();
             InitializeDatabaseButton.Click += (sender, args) => InitData();
             ViewTeamsButton.Click += (sender, args) => (new TeamsWindow(Database.Instance.Teams)).Show();
-
+            ViewDefenseConfigurationsButton.Click += (x, args) => (new DefensiveConfigurations(Database.Instance.DefenseConfigurations)).Show();
         }
 
         public void SetDirectory()

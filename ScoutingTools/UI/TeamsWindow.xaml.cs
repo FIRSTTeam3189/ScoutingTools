@@ -74,7 +74,7 @@ namespace ScoutingTools.UI
         {
             // Wait for a result from the capability window
             var result = new TaskCompletionSource<RobotCapability>();
-            var capabilites = new TeamCapabilityInput();
+            var capabilites = SelectedTeam.Capabilities != null ? new TeamCapabilityInput(SelectedTeam.Capabilities) : new TeamCapabilityInput();
             capabilites.RobotCapabilityCommited += capability => result.SetResult(capability);
             CapabilitiesButton.IsEnabled = false;
             capabilites.Show();
