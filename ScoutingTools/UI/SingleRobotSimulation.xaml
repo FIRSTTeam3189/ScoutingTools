@@ -120,8 +120,9 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="5">
             <Button Content="Calculate" Height="40" Margin="5" x:Name="CalculateButton"/>
+            <Button Content="Calculate All" Height="40" Margin="5" x:Name="CalculateAll"/>
             <Label Content="RESULT" HorizontalAlignment="Center"/>
-            <Label Content="{Binding CalculatedValue}"/>
+            <Label Content="{Binding CalculatedValue, StringFormat=N3}" HorizontalAlignment="Center" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Window>

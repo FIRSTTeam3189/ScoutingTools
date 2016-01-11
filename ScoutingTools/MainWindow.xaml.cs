@@ -47,7 +47,8 @@ namespace ScoutingTools
             var def = Database.Instance.DefenseConfigurations;
             var algorithms = new Dictionary<string, Func<Team, DefenseConfiguration, double>>()
             {
-                {"Score Calculturminer", StatisticalAlgorithms.ScoreCalculturminer }
+                {"Score Calculturminer", StatisticalAlgorithms.ScoreCalculturminer },
+                {"Score Determilate", SimulationAlgorithms.ScoreDetermilate }
             };
             var window = new SingleRobotSimulation(teams, def, algorithms);
             window.Show();

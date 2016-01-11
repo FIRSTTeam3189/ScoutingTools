@@ -1,0 +1,104 @@
+﻿<Window x:Class="ScoutingTools.UI.SingleRobotSimulationAnalysis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="SingleRobotSimulationAnalysis" Height="600" Width="400">
+    <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:SingleRobotSimulationAnalysis}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <DockPanel LastChildFill="True" Margin="5">
+            <Label Content="Team" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+            <ListView x:Name="TeamSelection" ItemsSource="{Binding Teams}" SelectionChanged="TeamSelection_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding UIString}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <StackPanel Grid.Column="1">
+            <Label Content="Team Info"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Number: "/>
+                <Label Content="{Binding SelectedTeam.Number}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Name: "/>
+                <Label Content="{Binding SelectedTeam.Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shoot High: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingPercentageHigh}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shoot Low: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingPercentageLow}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Hung Percentage: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.HungPercentage}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Action Points: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ActionPoints}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shooting Cost: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingActionCost}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cross Cost: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.DefenseActionCost}"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding SelectedTeam.Capabilities.Abilities}" MinHeight="30" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding SelectedTeam.Capabilities.DefensesCrossable}" MinHeight="30" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="Defense Info"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot One: "/>
+                <Label Content="{Binding SelectedDefense.SlotOneUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Two: "/>
+                <Label Content="{Binding SelectedDefense.SlotTwoUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Three: "/>
+                <Label Content="{Binding SelectedDefense.SlotThreeUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Four: "/>
+                <Label Content="{Binding SelectedDefense.SlotFourUI}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Slot Five: " />
+                <Label Content="{Binding SelectedDefense.SlotFiveUI}" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <Label Content="Projected Offense" HorizontalAlignment="Center"/>
+            <Label Content="{Binding SelectedValue, StringFormat=3N}" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</Window>

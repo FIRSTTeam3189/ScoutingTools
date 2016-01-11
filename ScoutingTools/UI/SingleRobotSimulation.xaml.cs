@@ -23,13 +23,26 @@ namespace ScoutingTools.UI
     /// </summary>
     public partial class SingleRobotSimulation : Window, INotifyPropertyChanged
     {
+        /// <summary>
+        /// All of the Teams
+        /// </summary>
         public ObservableCollection<Team> Teams { get; set; }
 
+        /// <summary>
+        /// All of the configurations
+        /// </summary>
         public ObservableCollection<DefenseConfiguration> Defenses { get; set; }
 
+        /// <summary>
+        /// All of the Algorithms
+        /// </summary>
         public IReadOnlyDictionary<string, Func<Team, DefenseConfiguration, double>> Algorithms { get; set; }
 
         private Team _selectedTeam;
+
+        /// <summary>
+        /// Selected Team
+        /// </summary>
         public Team SelectedTeam {
             get { return _selectedTeam; }
             set
@@ -42,6 +55,10 @@ namespace ScoutingTools.UI
             }
         }
         private DefenseConfiguration _selectedDefense;
+
+        /// <summary>
+        /// Selected Defense
+        /// </summary>
         public DefenseConfiguration SelectedDefense
         {
             get { return _selectedDefense; }
@@ -57,6 +74,9 @@ namespace ScoutingTools.UI
 
         private Func<Team, DefenseConfiguration, double> _selectedAlgorithm = null;
 
+        /// <summary>
+        /// Selected Algorithm
+        /// </summary>
         public Func<Team, DefenseConfiguration, double> SelectedAlgorithm
         {
             get { return _selectedAlgorithm; }
@@ -73,6 +93,9 @@ namespace ScoutingTools.UI
         private double _calculatedValue = 0.0;
         private const double Tolerance = .01;
 
+        /// <summary>
+        /// Calculated Value
+        /// </summary>
         public double CalculatedValue
         {
             get { return _calculatedValue; }
@@ -91,11 +114,19 @@ namespace ScoutingTools.UI
             InitializeComponent();
 
             CalculateButton.Click += CalculateButtonOnClick;
+            CalculateAll.Click += CalculateAllClicked;
             CalculateButton.IsEnabled = false;
+            CalculateAll.IsEnabled = false;
             Teams = new ObservableCollection<Team>(teams);
             Defenses = new ObservableCollection<DefenseConfiguration>(configurations);
             Algorithms = algoritms;
             Grid.DataContext = this;
+        }
+
+        private void CalculateAllClicked(object sender, RoutedEventArgs e)
+        { 
+            var win = new SingleRobotSimulationAnalysis(Teams.OrderByDescending(x => SelectedAlgorithm(x, SelectedDefense)), SelectedDefense, SelectedAlgorithm);
+            win.Show();
         }
 
         private async void CalculateButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -133,6 +164,7 @@ namespace ScoutingTools.UI
             {
                 SelectedDefense = null;
                 CalculateButton.IsEnabled = false;
+                CalculateAll.IsEnabled = false;
                 return;
             }
 
@@ -147,6 +179,7 @@ namespace ScoutingTools.UI
             {
                 SelectedAlgorithm = null;
                 CalculateButton.IsEnabled = false;
+                CalculateAll.IsEnabled = false;
                 return;
             }
 
@@ -158,6 +191,8 @@ namespace ScoutingTools.UI
         {
             if (SelectedTeam != null && SelectedDefense != null && SelectedAlgorithm != null)
                 CalculateButton.IsEnabled = true;
+            if (SelectedAlgorithm != null && SelectedDefense != null)
+                CalculateAll.IsEnabled = true;
         }
     }
 }
