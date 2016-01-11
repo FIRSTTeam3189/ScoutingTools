@@ -78,6 +78,9 @@
     <Compile Include="UI\RobotInput.xaml.cs">
       <DependentUpon>RobotInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\SingleRobotSimulation.xaml.cs">
+      <DependentUpon>SingleRobotSimulation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\TeamCapabilityInput.xaml.cs">
       <DependentUpon>TeamCapabilityInput.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\RobotInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SingleRobotSimulation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

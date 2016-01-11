@@ -1,0 +1,98 @@
+﻿<Window x:Class="ScoutingTools.UI.SingleRobotSimulation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="SingleRobotSimulation" Height="600" Width="800">
+    <Grid d:DataContext="{d:DesignInstance local:SingleRobotSimulation}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel LastChildFill="True" Margin="5">
+            <Label Content="Robot To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+            <ListView x:Name="RobotSelection" SelectionMode="Single" ItemsSource="{Binding Teams}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding UIString}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="1">
+            <Label Content="Defense To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+            <ListView x:Name="DefeseSelection" SelectionMode="Single" ItemsSource="{Binding Defenses}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding UIString}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <DockPanel LastChildFill="True" Margin="5" Grid.Column="2">
+            <Label Content="Algorithm To Simulate" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+            <ListView x:Name="AlgorithmSelection" SelectionMode="Single" ItemsSource="{Binding Algorithms}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Key}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        
+        <StackPanel Grid.Column="3">
+            <Label Content="Team Info"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Number: "/>
+                <Label Content="{Binding SelectedTeam.Number}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Team Name: "/>
+                <Label Content="{Binding SelectedTeam.Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shoot High: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingPercentageHigh}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shoot Low: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingPercentageLow}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Hung Percentage: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.HungPercentage}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Action Points: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ActionPoints}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Shooting Cost: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.ShootingActionCost}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cross Cost: "/>
+                <Label Content="{Binding SelectedTeam.Capabilities.DefenseActionCost}"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding SelectedTeam.Capabilities.Abilities}" MinHeight="30" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding SelectedTeam.Capabilities.DefensesCrossable}" MinHeight="30" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
