@@ -39,6 +39,19 @@ namespace ScoutingTools
             ViewTeamsButton.Click += (sender, args) => (new TeamsWindow(Database.Instance.Teams)).Show();
             ViewDefenseConfigurationsButton.Click += (x, args) => (new DefensiveConfigurations(Database.Instance.DefenseConfigurations)).Show();
             SimulateData.Click += SimulateDataOnClick;
+            SimulateLive.Click += SimulateLive_Click;
+        }
+
+        private void SimulateLive_Click(object sender, RoutedEventArgs e)
+        {
+            var def = Database.Instance.DefenseConfigurations;
+            var algorithms = new Dictionary<string, Func<Team, DefenseConfiguration, double>>()
+            {
+                {"Score Calculturminer", StatisticalAlgorithms.ScoreCalculturminer },
+                {"Score Determilate", SimulationAlgorithms.ScoreDetermilate }
+            };
+            var win = new LiveSingleRobotSimulation(def, algorithms);
+            win.Show();
         }
 
         private void SimulateDataOnClick(object sender, RoutedEventArgs routedEventArgs)

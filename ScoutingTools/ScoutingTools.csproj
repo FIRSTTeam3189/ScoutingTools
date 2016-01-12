@@ -74,6 +74,9 @@
     <Compile Include="UI\DefensiveConfigurations.xaml.cs">
       <DependentUpon>DefensiveConfigurations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\LiveSingleRobotSimulation.xaml.cs">
+      <DependentUpon>LiveSingleRobotSimulation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\RobotEventInput.xaml.cs">
       <DependentUpon>RobotEventInput.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\DefensiveConfigurations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\LiveSingleRobotSimulation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

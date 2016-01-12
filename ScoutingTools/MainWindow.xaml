@@ -23,7 +23,7 @@
         <Button x:Name="ViewTeamsButton" Content="View Teams" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="Auto"/>
         <Button x:Name="ViewDefenseConfigurationsButton" Content="View Defenses" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="Auto"/>
         <Button x:Name="ViewAlliancesButton" Content="View Alliances" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="Auto"/>
-        <Button x:Name="ViewRobotEventsButton" Content="View Robot Events" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="Auto"/>
+        <Button x:Name="SimulateLive" Content="Live Simulate" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="Auto"/>
         <Button x:Name="SimulateData" Content="Simulate" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="Auto"/>
         <Button x:Name="ViewMatchesButton" Content="View Matches" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="Auto"/>
     </Grid>

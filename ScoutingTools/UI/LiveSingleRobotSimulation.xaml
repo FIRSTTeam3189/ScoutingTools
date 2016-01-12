@@ -1,0 +1,101 @@
+﻿<Window x:Class="ScoutingTools.UI.LiveSingleRobotSimulation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingTools.UI"
+        mc:Ignorable="d"
+        Title="LiveSingleRobotSimulation" Height="500" Width="800">
+    <Grid x:Name="Grid" d:DataContext="{d:DesignInstance local:LiveSingleRobotSimulation}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Label Content="Defense Selection" HorizontalAlignment="Center"/>
+            <ListView x:Name="DefenseSelection" Height ="200" ItemsSource="{Binding DefensiveConfigurations}" SelectionChanged="DefenseSelection_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding UIString}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Content="Algorithm" HorizontalAlignment="Center"/>
+            <ListView x:Name ="AlgorithmSelection" Height="200" ItemsSource="{Binding Algorithms}" SelectionChanged="AlgorithmSelection_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Key}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Label Content="Robot" HorizontalAlignment="Center"/>
+            <DockPanel LastChildFill="True">
+                <Label Content="Name: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding TeamName}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Number: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding TeamNumber}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="AP: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.ActionPoints}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Shooting Cost: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.ShootingActionCost}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Cross Cost: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.DefenseActionCost}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="High Percentage: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.ShootingPercentageHigh}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Low Percentage: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.ShootingPercentageLow}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Hung Percentage: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.HungPercentage}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Content="Foul Percentage: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.FoulPercentage}"/>
+            </DockPanel>
+            <Label Content="{Binding SelectedDefense.SlotOneUI}" FontSize="14"/>
+            <Label Content="{Binding SelectedDefense.SlotTwoUI}" FontSize="14"/>
+            <Label Content="{Binding SelectedDefense.SlotThreeUI}" FontSize="14"/>
+            <Label Content="{Binding SelectedDefense.SlotFourUI}" FontSize="14"/>
+            <Label Content="{Binding SelectedDefense.SlotFiveUI}" FontSize="14"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="Capabilities" HorizontalAlignment="Center"/>
+            <ListView x:Name="CapabilitiesSelected" ItemsSource="{Binding Capabilities}" Height="200">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Content="Defenses Crossable"/>
+            <ListView x:Name="DefensesSelected" ItemsSource="{Binding Defenses}" Height="200">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <Button Content="Calculate" Height="40" Click="Button_Click" />
+            <Label Content="{Binding CalculatedValue}" ContentStringFormat="{}{0:N2}" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</Window>
