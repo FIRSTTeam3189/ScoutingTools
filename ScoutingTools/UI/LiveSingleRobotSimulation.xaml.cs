@@ -114,8 +114,8 @@ namespace ScoutingTools.UI
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var selectedDefenses = DefensesSelected.SelectedItems.Cast<DefenseType>();
-            var selectedCap = CapabilitiesSelected.SelectedItems.Cast<RobotCapabilityType>();
+            var selectedDefenses = DefensesSelected.SelectedItems.Cast<KeyValuePair<DefenseType, string>>().Select(x => x.Key);
+            var selectedCap = CapabilitiesSelected.SelectedItems.Cast<KeyValuePair<RobotCapabilityType, string>>().Select(x => x.Key);
 
             RobotCapability.DefensesCrossable = selectedDefenses.ToList();
             RobotCapability.Abilities = selectedCap.ToList();

@@ -66,6 +66,10 @@
                 <TextBox Text="{Binding RobotCapability.HungPercentage}"/>
             </DockPanel>
             <DockPanel LastChildFill="True">
+                <Label Content="Challenge Percentage: " DockPanel.Dock="Left" />
+                <TextBox Text="{Binding RobotCapability.ChallengePercentage}"/>
+            </DockPanel>
+            <DockPanel LastChildFill="True">
                 <Label Content="Foul Percentage: " DockPanel.Dock="Left" />
                 <TextBox Text="{Binding RobotCapability.FoulPercentage}"/>
             </DockPanel>
